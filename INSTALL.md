@@ -24,7 +24,7 @@ docker run -d `
 -v pgdata:/var/lib/postgresql/data `
 postgres:15
 
-## 2 Choose thr profile of the application
+## 2 Choose the profile of the application
 
 In the application.yml, choose active: dev if you need more logs, active: prod if you don't. 
 
