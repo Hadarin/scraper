@@ -18,8 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
@@ -33,9 +31,7 @@ public class JobPageParserService {
     public List<JobDto> parallelPageDataToDto(String jobFunction) throws InterruptedException {
         Elements jobCards = webDriverService.collectPageData(jobFunction).select("div.job-card");
         log.debug("Job cards size is " + jobCards.size());
-
         List<CompletableFuture<JobDto>> futures = new ArrayList<>();
-        AtomicLong skipCounter = new AtomicLong();
 
         log.debug("Start collecting Job card dtos");
         for (Element card : jobCards) {
@@ -54,7 +50,6 @@ public class JobPageParserService {
 
                     String descriptionUrl = card.selectFirst("a[data-testid=job-title-link]").attr("href");
                     if (!descriptionUrl.startsWith("/companies")) {
-                        skipCounter.getAndIncrement();
                         return null;
                     }
 
@@ -106,7 +101,6 @@ public class JobPageParserService {
 
         CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
 
-        log.debug("Dtos collected, skipped cards - " + skipCounter.get());
         return futures.stream()
                 .map(CompletableFuture::join)
                 .filter(Objects::nonNull)
