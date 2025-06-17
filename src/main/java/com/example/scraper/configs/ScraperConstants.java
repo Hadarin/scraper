@@ -1,8 +1,5 @@
 package com.example.scraper.configs;
 
-import lombok.Data;
-import org.springframework.stereotype.Component;
-
 public final class ScraperConstants {
     public static final String MAIN_URL = "https://jobs.techstars.com/";
     public static final String BASE_URL = "https://jobs.techstars.com/jobs";

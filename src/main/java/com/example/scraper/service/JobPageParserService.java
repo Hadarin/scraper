@@ -31,7 +31,6 @@ public class JobPageParserService {
     private final WebDriverService webDriverService;
 
     public List<JobDto> parallelPageDataToDto(String jobFunction) throws InterruptedException {
-        ExecutorService executor = Executors.newFixedThreadPool(60);
         Elements jobCards = webDriverService.collectPageData(jobFunction).select("div.job-card");
         log.debug("Job cards size is " + jobCards.size());
 
