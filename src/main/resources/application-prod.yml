@@ -1,0 +1,6 @@
+logging:
+  level:
+    org.hibernate.SQL: WARN
+    org.hibernate.schema: WARN
+    org.hibernate.engine.jdbc.batch.internal.BatchingBatch: WARN
+    org.hibernate.engine.jdbc.batch.internal.AbstractBatchingBatch: WARN

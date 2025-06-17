@@ -1,0 +1,7 @@
+logging:
+  level:
+    com.example.scraper.service: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.schema: DEBUG
+    org.hibernate.engine.jdbc.batch.internal.BatchingBatch: DEBUG
+    org.hibernate.engine.jdbc.batch.internal.AbstractBatchingBatch: DEBUG
